@@ -13,11 +13,11 @@
             
             setInterval(mainloop, 1000 / 50);
         }
-    var playerXpos = 100;
-    var playerYpos = 100;
+    var playerXpos = 200;
+    var playerYpos = 400; 
     var playerXspeed = 5;
     var playerYspeed = 5;
-    const PLAYER_SIZE = 20;
+    const PLAYER_SIZE = 10;
         
      var leftKeyPress = false;   
      var rightKeyPress = false;   
@@ -27,15 +27,18 @@
      const LEFT_KEY = 65;
      const RIGHT_KEY = 68;
      const UP_KEY = 87;
-     const DOWN_KEY = 83;
+     const DOWN_KEY = 83; 
         
         
         function mainloop() {
             colorRect(0,0,canvas.width,canvas.height,'black'); // bg
             colorRect(playerXpos,playerYpos,PLAYER_SIZE,PLAYER_SIZE,'green');
+            
+                    
+         playerMove()
         }
         
-        playerMove();
+        
         
         function keyPressed(evt){
             if(evt.keyCode == LEFT_KEY){
@@ -69,14 +72,20 @@
             }  
         }
         
+           function colorRect(x,y,w,h,c){
+            canvasContext.fillStyle = c;
+            canvasContext.fillRect(x,y,w,h);
+        }
+        
         
         
          function playerMove(){
-             if(leftKeyPress && playerXpos > 0){
+             if(leftKeyPress){
               playerXpos -= playerXspeed;  
            } 
              if(rightKeyPress){
-              playerXpos += playerXspeed;  
+              playerXpos += playerXspeed;
+        
            } 
              if(upKeyPress){
               playerYpos -= playerYspeed;  
@@ -88,10 +97,7 @@
              
          
         
-         function colorRect(x,y,w,h,c){
-            canvasContext.fillStyle = c;
-            canvasContext.fillRect(x,y,w,h);
-        }
+      
     
     </script>
 </body>
