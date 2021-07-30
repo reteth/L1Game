@@ -19,6 +19,9 @@
     var playerYspeed = 5;
     const PLAYER_SIZE = 10;
         
+    var gravityspeed = 1;
+    
+    
      var leftKeyPress = false;   
      var rightKeyPress = false;   
      var upKeyPress = false;   
@@ -89,10 +92,14 @@
            } 
              if(upKeyPress){
               playerYpos -= playerYspeed;  
-           } 
-             if(downKeyPress){
-              playerYpos += playerYspeed;  
+           } else{
+              playerYpos += gravityspeed;
            }
+             if(downKeyPress){
+            }
+            
+                 
+           
          }
              
          
