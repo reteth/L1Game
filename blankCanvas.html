@@ -1,6 +1,6 @@
 <!doctype html>
 <body>
-    <canvas id="gameCanvas" width="600" height="600"></canvas>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
     <script>
         var canvas, canvasContext;
 
@@ -14,12 +14,15 @@
             setInterval(mainloop, 1000 / 50);
         }
     var playerXpos = 200;
-    var playerYpos = 400; 
+    var playerYpos = 370; 
     var playerXspeed = 5;
     var playerYspeed = 5;
-    const PLAYER_SIZE = 10;
+    const PLAYER_SIZE = 30;
+    
         
-    var gravityspeed = 1;
+    var enemyYspeed = 10;
+    var enemyYpos = 200;
+    const ENEMY_SIZE = 50;
     
     
      var leftKeyPress = false;   
@@ -36,6 +39,7 @@
         function mainloop() {
             colorRect(0,0,canvas.width,canvas.height,'black'); // bg
             colorRect(playerXpos,playerYpos,PLAYER_SIZE,PLAYER_SIZE,'green');
+           
             
                     
          playerMove()
@@ -80,8 +84,6 @@
             canvasContext.fillRect(x,y,w,h);
         }
         
-        
-        
          function playerMove(){
              if(leftKeyPress){
               playerXpos -= playerXspeed;  
@@ -91,17 +93,17 @@
         
            } 
              if(upKeyPress){
-              playerYpos -= playerYspeed;  
-           } else{
-              playerYpos += gravityspeed;
-           }
+             
+           } 
              if(downKeyPress){
             }
             
-                 
-           
          }
-             
+        
+        
+       
+
+          
          
         
       
