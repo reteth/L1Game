@@ -100,10 +100,10 @@
         }
         
          function playerMove(){
-             if(leftKeyPress){
+             if(leftKeyPress && playerXpos > 0){
               playerXpos -= playerXspeed;  
            } 
-             if(rightKeyPress){
+             if(rightKeyPress && playerXpos < 600 - PLAYER_SIZE){
               playerXpos += playerXspeed;
         
            } 
