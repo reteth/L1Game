@@ -22,7 +22,7 @@
     var enemyXpos = 0;
     var enemyYpos = 0; 
     var enemyXspeed = 5;
-    var playerYspeed = 5;
+    var enemyYspeed = 5;
     const ENEMY_SIZE = 30;
         
     
@@ -45,13 +45,19 @@
             
             colorRect(enemyXpos,enemyYpos,ENEMY_SIZE,ENEMY_SIZE,'red');
             
-         playerMove()
-          enemyMove()  
+        
+         playerMove();
+          enemyMove();  
             
         }
         
         function enemyMove(){
-            enemyXpos += enemyXspeed
+            enemyYpos += enemyYspeed;
+            
+            if(enemyYpos > canvas.height){
+                enemyYpos = 0 - ENEMY_SIZE;
+}
+            
         }
         
         
@@ -106,6 +112,9 @@
            } 
              if(downKeyPress){
             }
+             
+             
+             
             
          }
         
