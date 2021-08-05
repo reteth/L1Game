@@ -23,7 +23,7 @@
     var enemyYpos = 0; 
     var enemyXspeed = 5;
     var enemyYspeed = 5;
-    const ENEMY_SIZE = 30;
+    const ENEMY_SIZE = 20;
         
     
     
@@ -56,6 +56,7 @@
             
             if(enemyYpos > canvas.height){
                 enemyYpos = 0 - ENEMY_SIZE;
+                enemyXpos = Math.floor(Math.random()*(canvas.width - ENEMY_SIZE));
 }
             
         }
@@ -103,19 +104,10 @@
              if(leftKeyPress && playerXpos > 0){
               playerXpos -= playerXspeed;  
            } 
-             if(rightKeyPress && playerXpos < 600 - PLAYER_SIZE){
+             if(rightKeyPress && playerXpos < canvas.width - PLAYER_SIZE){
               playerXpos += playerXspeed;
         
            } 
-             if(upKeyPress){
-             
-           } 
-             if(downKeyPress){
-            }
-             
-             
-             
-            
          }
         
         
