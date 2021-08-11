@@ -38,19 +38,32 @@
      const UP_KEY = 87;
      const DOWN_KEY = 83; 
         
+     var enemies = [];
+        
+        
+     var starting = true;  
         
         function mainloop() {
             colorRect(0,0,canvas.width,canvas.height,'black'); // bg
             colorRect(playerXpos,playerYpos,PLAYER_SIZE,PLAYER_SIZE,'green');
-            
             colorRect(enemyXpos,enemyYpos,ENEMY_SIZE,ENEMY_SIZE,'red');
             
-        
-         playerMove();
-          enemyMove();  
             
+            if(starting){
+                eXpos = canvas.width / 2;
+                for(var i = 0; i < 10; i++)
+               makeEnemy();
+                starting = false;
+               }
+         
+         playerMove();
+         enemyMove();  
         }
         
+        function makeEnemy(){
+            
+        }
+         
         function enemyMove(){
             enemyYpos += enemyYspeed;
             
@@ -58,9 +71,11 @@
                 enemyYpos = 0 - ENEMY_SIZE;
                 enemyXpos = Math.floor(Math.random()*(canvas.width - ENEMY_SIZE));
 }
+            if(enemyYpos + ENEMY_SIZE > playerYpos && enemyYpos < playerYpos + PLAYER_SIZE && enemyXpos){
+                console.log('hit');
+            }
             
         }
-        
         
         
         function keyPressed(evt){
@@ -111,6 +126,8 @@
          }
         
         
+        
+       
        
 
           
