@@ -110,7 +110,7 @@ canvasContext.drawImage(src,x,y,w,h);
                 e.enemyYpos += e.enemyYspeed;
                 if (e.enemyYpos > canvas.height) {
                     e.enemyYpos = 0
-                    e.enemyYspeed = Math.floor(Math.random() * (15 - 5) + 5);
+                    e.enemyYspeed = Math.floor(Math.random() * (10 - 5) + 5);
                     e.enemyXpos = Math.floor(Math.random() * (canvas.width- e.ENEMY_SIZE));
                 }
                 
