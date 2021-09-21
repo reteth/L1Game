@@ -18,7 +18,7 @@
         var playerYpos = 370;
         var playerXspeed = 5;
         var playerYspeed = 5;
-        const PLAYER_SIZE = 30;
+        const PLAYER_SIZE = 25;
         
         
         
@@ -43,18 +43,14 @@
         var player = new Image();
         player.src = 'Sprites/player1.gif';
         
-        
-      
-        
-
-
+    
         var starting = true;
         
         
         
         
         function mainloop() {
-            colorRect(0, 0, canvas.width, canvas.height, 'black'); // bg
+             colorRect(0, 0, canvas.width, canvas.height, 'black'); // bg
             drawImg(player, playerXpos, playerYpos, PLAYER_SIZE, PLAYER_SIZE)
             
             
@@ -65,6 +61,7 @@
                 for (var i = 0; i < 16; i++)
                     makeEnemy();
                 starting = false;
+                alert('click to start')
             }
 
             playerMove();
@@ -110,17 +107,15 @@ canvasContext.drawImage(src,x,y,w,h);
                 e.enemyYpos += e.enemyYspeed;
                 if (e.enemyYpos > canvas.height) {
                     e.enemyYpos = 0
-                    e.enemyYspeed = Math.floor(Math.random() * (10 - 5) + 5);
+                    e.enemyYspeed = Math.floor(Math.random() * (10 - 3) + 3);
                     e.enemyXpos = Math.floor(Math.random() * (canvas.width- e.ENEMY_SIZE));
+                    
                 }
                 
                 
             });  
             
         }
-        
-        
-        
 
         function keyPressed(evt) {
             if (evt.keyCode == LEFT_KEY) {
@@ -185,8 +180,7 @@ canvasContext.drawImage(src,x,y,w,h);
           function hit() {            enemies.forEach(function(e, i, array) {
                 if (e.enemyXpos + e.ENEMY_SIZE > playerXpos && e.enemyXpos < playerXpos + PLAYER_SIZE && e.enemyYpos + e
                     .ENEMY_SIZE > playerYpos && e.enemyYpos < playerYpos + PLAYER_SIZE) {
-                    playerXpos = canvas.width / 2;
-                    playerYpos = canvas.height / 2;
+                   alert("you died lol")
                 };
             });
         }
