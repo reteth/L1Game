@@ -14,13 +14,28 @@
 
             setInterval(mainloop, 1000 / 50);
         }
+        
+        
+        
+        var userName = '';
+        while(userName == '' || userName == null){
+              userName = prompt('whats your name?') 
+        }
+        
+        
+       
+        
+        //player vars
         var playerXpos = 200;
         var playerYpos = 370;
         var playerXspeed = 5;
         var playerYspeed = 5;
-        const PLAYER_SIZE = 30;
+        const PLAYER_SIZE = 25;
+        
+        
+        
 
-
+        //key vars 
         var leftKeyPress = false;
         var rightKeyPress = false;
         var upKeyPress = false;
@@ -30,40 +45,63 @@
         const RIGHT_KEY = 68;
         const UP_KEY = 87;
         const DOWN_KEY = 83;
-
+        const hardMode = 13;
+        
+        //enemy array and sprite
         var enemies = [];
-
-
+        var enemy = new Image();
+        enemy.src = 'Sprites/sprite1.JPG';
+        
+        
+        //player array and sprite
+        var player = new Image();
+        player.src = 'Sprites/player1.gif';
+        
+    
         var starting = true;
-
+        
+        
+        
+        
         function mainloop() {
-            colorRect(0, 0, canvas.width, canvas.height, 'black'); // bg
-            colorRect(playerXpos, playerYpos, PLAYER_SIZE, PLAYER_SIZE, 'green');
+             colorRect(0, 0, canvas.width, canvas.height, 'black'); // bg
+            drawImg(player, playerXpos, playerYpos, PLAYER_SIZE, PLAYER_SIZE)//player sprite render
+            
+            
 
 
             if (starting) {
                 eXpos = canvas.width / 2;
-                for (var i = 0; i < 10; i++)
+                for (var i = 0; i < 16; i++)
                     makeEnemy();
                 starting = false;
+                alert('click to start , wasd is move ')//start is alert 
+                 
             }
 
             playerMove();
             enemyMove();
             drawEnemy();
+            hit();
+            
+            
        
         }
 
         function drawEnemy() {
             enemies.forEach(function(e, i, array) {
-                colorRect(e.enemyXpos, e.enemyYpos, e.ENEMY_SIZE, e.ENEMY_SIZE, 'red');
+             drawImg(enemy,e.enemyXpos,e.enemyYpos,e.ENEMY_SIZE,e.ENEMY_SIZE);
             });
+        }//end func drawEnemy
+        
+        function drawImg(src,x,y,w,h){
+canvasContext.drawImage(src,x,y,w,h);
         }
 
 
         function makeEnemy() {
             var ENEMY_SIZE = 20;
-            var enemyXpos = Math.floor(Math.random() * (canvas.width - ENEMY_SIZE));
+            var enemyXpos = Math.floor(Math.random() * (canvas.width - ENEMY_SIZE));//enemys will not spawn off-screen
             var enemyYpos = 0;
             var enemyXspeed = 5;
             var enemyYspeed = 5;
@@ -77,22 +115,27 @@
 
             }
             enemies.push(enemy);
-        }
+        }//end func makeEnemy
 
-        function enemyMove() {
+        function enemyMove() {//enemy move down 
             enemies.forEach(function(e, i, array) {
 
                 e.enemyYpos += e.enemyYspeed;
                 if (e.enemyYpos > canvas.height) {
                     e.enemyYpos = 0
-                    e.enemyYspeed = Math.floor(Math.random() * (15 - 5) + 5);
+                    e.enemyYspeed = Math.floor(Math.random() * (10 - 3) + 3);
+                    e.enemyXpos = Math.floor(Math.random() * (canvas.width- e.ENEMY_SIZE));
+                    
+                    
+                    
+                    
                 }
-
-
-            });
-
-        }
-
+                
+                
+            });  
+            
+        }//end func enemyMove
+        
         function keyPressed(evt) {
             if (evt.keyCode == LEFT_KEY) {
                 leftKeyPress = true;
@@ -103,7 +146,7 @@
 
             }
             if (evt.keyCode == UP_KEY) {
-                upKeyPress = true;
+                  upKeyPress = true;
 
             }
             if (evt.keyCode == DOWN_KEY) {
@@ -111,7 +154,8 @@
 
             }
         }
-
+        
+   
         function keyReleased(evt) {
             if (evt.keyCode == LEFT_KEY) {
                 leftKeyPress = false;
@@ -136,7 +180,7 @@
             canvasContext.fillRect(x, y, w, h);
         }
 
-        function playerMove() {
+        function playerMove() {//player movments
             if (leftKeyPress && playerXpos > 0) {
                 playerXpos -= playerXspeed;
             }
@@ -152,6 +196,21 @@
                 playerYpos += playerYspeed;
             }
         }
+        
+          function hit() {enemies.forEach(function(e, i, array) {//enemy reloads page when player is touched
+                if (e.enemyXpos + e.ENEMY_SIZE > playerXpos && e.enemyXpos < playerXpos + PLAYER_SIZE && e.enemyYpos + e
+                    .ENEMY_SIZE > playerYpos && e.enemyYpos < playerYpos + PLAYER_SIZE) {
+                   
+                     location.reload();
+               
+                };
+            });
+        }//when player is touching enemy , the page will reload , this is the end screen
+   
+        
+       
+        
+        
 
     </script>
 </body>
